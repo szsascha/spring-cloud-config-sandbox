@@ -6,5 +6,17 @@ spring:
     config:
       server:
         git:
+          # URI of git repo
           uri: https://github.com/szsascha/spring-cloud-config-sandbox
+          # Subdir of git repo with configuration
           searchPaths: config
+          # Clone config repo on startup so that fetching errors appear immediately on serverstartup
+          clone-on-start: true
+          # Don't use default /tmp because it can be cleared on some linux systems on random times.
+          # This can follows random not found errors that are a mess to debug.
+          basedir: /var/tmp/config-server
+          # Be sure that remote repo is fetched if local is corrupted
+          force-pull: true
+          # Value in seconds, how often the config server will fetch updated configuration.
+          # 0 is the default value. With this value, the configuration is fetched on each config request.
+          refreshRate: 0
