@@ -5,5 +5,8 @@ spring:
   profiles:
     active: dev
 
+  bus:
+    enabled: true
+
   config:
     import: optional:configserver:http://localhost:8888
